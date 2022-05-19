@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert data
+      author: Stoyan Stoyanov
+      context: default
+      changes:
+        - tagDatabase:
+            tag: version_0.0.2
+        - sqlFile:
+            path: insert-data.sql
+            relativeToChangelogFile: true
+            splitStatements: true

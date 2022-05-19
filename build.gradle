@@ -1,0 +1,44 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.7'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id "io.swagger.core.v3.swagger-gradle-plugin" version "2.2.0"
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '18'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '2.6.7'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.6.7'
+	implementation group: 'org.springframework.boot', name : 'spring-boot-starter-validation'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+	implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.10.0'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '3.1.2'
+	implementation group: 'com.sun.xml.bind', name: 'jaxb-core', version: '4.0.0-M4'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
+	implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+//	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '2.9.2'
+
+	developmentOnly group: 'org.springframework.boot', name: 'spring-boot-devtools'
+
+	runtimeOnly group: 'org.postgresql', name: 'postgresql'
+
+	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+	testImplementation group: 'com.h2database', name: 'h2', version: '2.1.212'
+	testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+	testImplementation group: 'org.springframework.amqp', name: 'spring-rabbit-test', version: '2.4.4'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

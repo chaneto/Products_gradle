@@ -1,0 +1,9 @@
+databaseChangeLog:
+  #  - include:
+  #      file: init-script.sql
+  #      relativeToChangelogFile: true
+
+  - include:
+      file: v1/changelog-master-v1.yml
+      relativeToChangelogFile: true
+
