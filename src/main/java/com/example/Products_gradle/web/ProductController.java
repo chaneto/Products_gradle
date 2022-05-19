@@ -1,17 +1,17 @@
-package com.example.ProductsGradle.web;
+package com.example.Products_gradle.web;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
-import com.example.ProductsGradle.model.bindings.FilterBindingModel;
-import com.example.ProductsGradle.model.bindings.ProductAddBindingModel;
-import com.example.ProductsGradle.model.entities.ProductEntity;
-import com.example.ProductsGradle.model.serviceModels.OrderCreateResource;
-import com.example.ProductsGradle.model.serviceModels.ProductServiceModel;
-import com.example.ProductsGradle.model.views.ProductRestViewModel;
-import com.example.ProductsGradle.model.views.ProductViewModel;
-import com.example.ProductsGradle.services.ProductService;
+import com.example.Products_gradle.model.bindings.FilterBindingModel;
+import com.example.Products_gradle.model.bindings.ProductAddBindingModel;
+import com.example.Products_gradle.model.entities.ProductEntity;
+import com.example.Products_gradle.model.serviceModels.OrderCreateResource;
+import com.example.Products_gradle.model.serviceModels.ProductServiceModel;
+import com.example.Products_gradle.model.views.ProductRestViewModel;
+import com.example.Products_gradle.model.views.ProductViewModel;
+import com.example.Products_gradle.services.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

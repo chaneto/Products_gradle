@@ -1,15 +1,13 @@
-package com.example.ProductsGradle.services;
+package com.example.Products_gradle.services;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-
-import com.example.ProductsGradle.model.bindings.FilterBindingModel;
-import com.example.ProductsGradle.model.entities.ProductEntity;
-import com.example.ProductsGradle.model.serviceModels.OrderCreateResource;
-import com.example.ProductsGradle.model.serviceModels.ProductServiceModel;
-import com.example.ProductsGradle.model.views.ProductViewModel;
-
+import com.example.Products_gradle.model.bindings.FilterBindingModel;
+import com.example.Products_gradle.model.entities.ProductEntity;
+import com.example.Products_gradle.model.serviceModels.OrderCreateResource;
+import com.example.Products_gradle.model.serviceModels.ProductServiceModel;
+import com.example.Products_gradle.model.views.ProductViewModel;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;

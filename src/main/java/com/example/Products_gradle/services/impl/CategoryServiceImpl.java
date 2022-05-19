@@ -1,10 +1,10 @@
-package com.example.ProductsGradle.services.impl;
+package com.example.Products_gradle.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.example.ProductsGradle.model.views.CategoryViewModel;
-import com.example.ProductsGradle.repositories.ProductRepository;
-import com.example.ProductsGradle.services.CategoryService;
+import com.example.Products_gradle.model.views.CategoryViewModel;
+import com.example.Products_gradle.repositories.ProductRepository;
+import com.example.Products_gradle.services.CategoryService;
 import org.springframework.stereotype.Service;
 
 @Service

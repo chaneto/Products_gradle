@@ -1,4 +1,4 @@
-package com.example.ProductsGradle.model.bindings;
+package com.example.Products_gradle.model.bindings;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

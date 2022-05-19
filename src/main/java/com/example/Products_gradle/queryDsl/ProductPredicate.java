@@ -1,10 +1,10 @@
-package com.example.ProductsGradle.queryDsl;
+package com.example.Products_gradle.queryDsl;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import com.example.ProductsGradle.model.entities.ProductEntity;
+import com.example.Products_gradle.model.entities.ProductEntity;
 import org.springframework.data.jpa.domain.Specification;
 
 public class ProductPredicate implements Specification<ProductEntity> {

@@ -1,8 +1,8 @@
-package com.example.ProductsGradle.services;
+package com.example.Products_gradle.services;
 
 import java.util.List;
 
-import com.example.ProductsGradle.model.views.CategoryViewModel;
+import com.example.Products_gradle.model.views.CategoryViewModel;
 
 public interface CategoryService {
 

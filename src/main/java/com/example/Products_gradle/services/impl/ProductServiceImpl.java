@@ -1,17 +1,17 @@
-package com.example.ProductsGradle.services.impl;
+package com.example.Products_gradle.services.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.ProductsGradle.model.bindings.FilterBindingModel;
-import com.example.ProductsGradle.model.entities.ProductEntity;
-import com.example.ProductsGradle.model.serviceModels.OrderCreateResource;
-import com.example.ProductsGradle.model.serviceModels.ProductServiceModel;
-import com.example.ProductsGradle.model.views.ProductViewModel;
-import com.example.ProductsGradle.queryDsl.ProductPredicate;
-import com.example.ProductsGradle.queryDsl.SearchCriteria;
-import com.example.ProductsGradle.repositories.ProductRepository;
-import com.example.ProductsGradle.services.ProductService;
+import com.example.Products_gradle.model.bindings.FilterBindingModel;
+import com.example.Products_gradle.model.entities.ProductEntity;
+import com.example.Products_gradle.model.serviceModels.OrderCreateResource;
+import com.example.Products_gradle.model.serviceModels.ProductServiceModel;
+import com.example.Products_gradle.model.views.ProductViewModel;
+import com.example.Products_gradle.queryDsl.ProductPredicate;
+import com.example.Products_gradle.queryDsl.SearchCriteria;
+import com.example.Products_gradle.repositories.ProductRepository;
+import com.example.Products_gradle.services.ProductService;
 import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;

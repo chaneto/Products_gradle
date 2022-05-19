@@ -1,6 +1,6 @@
-package com.example.ProductsGradle.web;
+package com.example.Products_gradle.web;
 
-import com.example.ProductsGradle.model.views.ProductRestViewModel;
+import com.example.Products_gradle.model.views.ProductRestViewModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,4 @@
-package com.example.ProductsGradle.model.views;
+package com.example.Products_gradle.model.views;
 
 import java.util.ArrayList;
 import java.util.List;

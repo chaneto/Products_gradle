@@ -1,9 +1,9 @@
-package com.example.ProductsGradle.web;
+package com.example.Products_gradle.web;
 
 import java.util.List;
 
-import com.example.ProductsGradle.model.views.CategoryViewModel;
-import com.example.ProductsGradle.services.CategoryService;
+import com.example.Products_gradle.model.views.CategoryViewModel;
+import com.example.Products_gradle.services.CategoryService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

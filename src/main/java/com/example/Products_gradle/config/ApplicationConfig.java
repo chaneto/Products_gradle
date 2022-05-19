@@ -1,4 +1,4 @@
-package com.example.ProductsGradle.config;
+package com.example.Products_gradle.config;
 
 import java.lang.reflect.Type;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.example.ProductsGradle.config;
+package com.example.Products_gradle.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

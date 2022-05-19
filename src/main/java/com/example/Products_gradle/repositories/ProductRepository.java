@@ -1,9 +1,9 @@
-package com.example.ProductsGradle.repositories;
+package com.example.Products_gradle.repositories;
 
 import java.math.BigDecimal;
 import java.util.List;
 import javax.transaction.Transactional;
-import com.example.ProductsGradle.model.entities.ProductEntity;
+import com.example.Products_gradle.model.entities.ProductEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
