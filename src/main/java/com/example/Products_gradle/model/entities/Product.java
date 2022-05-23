@@ -1,20 +1,53 @@
-package com.example.Products_gradle.model.views;
+package com.example.Products_gradle.model.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+import io.swagger.annotations.ApiModelProperty;
 
-public class ProductViewModel {
+@Entity
+@Table(name = "products")
+public class Product {
 
-
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @ApiModelProperty(value = "Unique product identifier")
   private Long id;
+
+  @Column(nullable = false, unique = true)
+  @Size(min = 1)
+  @ApiModelProperty(value = "Product name")
   private String name;
+
+  @Column(nullable = false)
+  @Size(min = 1)
+  @ApiModelProperty(value = "The category to which the product belongs")
   private String category;
+
+  @Column(columnDefinition = "TEXT")
+  @Size(min = 10)
+  @ApiModelProperty(value = "Detailed product information")
   private String description;
+
+  @Column(nullable = false)
+  @DecimalMin("0")
+  @ApiModelProperty(value = "The available quantity of the product in the database")
   private BigDecimal quantity;
+
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @Column(name = "created_date", nullable = false)
+  @ApiModelProperty(value = "Date of creation of the product")
   private LocalDate createdDate;
+
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @Column(name = "last_modified_date")
+  @ApiModelProperty(value = "Last modification of the product")
   private LocalDate lastModifiedDate;
 
-  public ProductViewModel() {
+  public Product() {
   }
 
   public Long getId() {

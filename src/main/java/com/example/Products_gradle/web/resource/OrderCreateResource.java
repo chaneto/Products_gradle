@@ -1,4 +1,4 @@
-package com.example.Products_gradle.model.serviceModels;
+package com.example.Products_gradle.web.resource;
 
 import java.math.BigDecimal;
 

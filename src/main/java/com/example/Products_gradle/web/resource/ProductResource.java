@@ -1,9 +1,9 @@
-package com.example.Products_gradle.model.serviceModels;
+package com.example.Products_gradle.web.resource;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ProductServiceModel {
+public class ProductResource {
 
   private Long id;
   private String name;
@@ -11,9 +11,8 @@ public class ProductServiceModel {
   private String description;
   private BigDecimal quantity;
   private LocalDate createdDate;
-  private LocalDate lastModifiedDate;
 
-  public ProductServiceModel() {
+  public ProductResource() {
   }
 
   public Long getId() {
@@ -62,13 +61,5 @@ public class ProductServiceModel {
 
   public void setCreatedDate(LocalDate createdDate) {
     this.createdDate = createdDate;
-  }
-
-  public LocalDate getLastModifiedDate() {
-    return lastModifiedDate;
-  }
-
-  public void setLastModifiedDate(LocalDate lastModifiedDate) {
-    this.lastModifiedDate = lastModifiedDate;
   }
 }

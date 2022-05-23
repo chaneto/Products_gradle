@@ -1,46 +1,58 @@
 package com.example.Products_gradle.services;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-import com.example.Products_gradle.model.bindings.FilterBindingModel;
-import com.example.Products_gradle.model.entities.ProductEntity;
-import com.example.Products_gradle.model.serviceModels.OrderCreateResource;
-import com.example.Products_gradle.model.serviceModels.ProductServiceModel;
-import com.example.Products_gradle.model.views.ProductViewModel;
+import com.example.Products_gradle.model.entities.Product;
+import com.example.Products_gradle.web.resource.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpEntity;
+import org.springframework.validation.BindingResult;
 
 public interface ProductService {
 
+  boolean validationOrder(Long id, Long quantity);
 
-  List<ProductViewModel> getAllProductsBySpecifications(Specification specification);
+  boolean validationUpdateProduct(ProductCreateResource productCreateResource,
+    BindingResult bindingResult, Long id);
 
-  Specification getAllSpecifications(List<FilterBindingModel> specifications);
+  boolean namesMatches(String oldName, String newName);
 
-  ProductViewModel findByName(String name);
+  boolean checkForValidId(Long id);
 
-  int getAllProductCount();
+  boolean validationProductCreateResource(BindingResult bindingResult);
+
+  HttpEntity<OrderCreateResource> getHttpEntity(Product product, BigDecimal quantityBuy);
+
+  Product getUpdatedProduct(ProductCreateResource productCreateResource, Long id);
+
+  List<Product> getAllProductsBySpecifications(Specification specification);
+
+  Specification getAllSpecifications(List<FilterResource> specifications);
+
+  int getAllProductCount(Specification specification);
 
   void setQuantity(BigDecimal quantity, Long id);
 
   boolean quantityIsEnough(Long id, BigDecimal quantityBuy);
 
-  ProductEntity seedProduct(ProductServiceModel productServiceModel) throws
+  Product seedProduct(Product product) throws
     DataIntegrityViolationException;
 
   boolean productIsExists(String name);
 
-  List<ProductViewModel> getAllProducts(Integer pageNo, Integer pageSize, Sort sort);
+  List<Product> validationSortingAndFiltering(String orderBy, String direction, Integer page,
+    Integer pageSize, List<FilterResource> filterResources,
+    BindingResult bindingResult);
 
-  ProductViewModel getById(Long id);
+  List<Product> getAllProducts(Integer pageNo, Integer pageSize, Sort sort,
+    List<FilterResource> filterResource);
+
+  Product getById(Long id);
 
   void deleteProductById(Long id);
 
-  Sort getSorted(String orderBy, String direction);
+  OrderCreateResource getOrderResource(Product product, BigDecimal quantityBuy);
 
-  OrderCreateResource getOrderResource(ProductViewModel productViewModel, BigDecimal quantityBuy);
-
-  List<ProductViewModel> conversionToListViewModel(List<ProductEntity> products);
 }

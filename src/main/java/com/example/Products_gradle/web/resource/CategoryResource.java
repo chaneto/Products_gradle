@@ -1,11 +1,11 @@
-package com.example.Products_gradle.model.views;
+package com.example.Products_gradle.web.resource;
 
-public class CategoryViewModel {
+public class CategoryResource {
 
   private String category;
   private int productsAvailable;
 
-  public CategoryViewModel() {
+  public CategoryResource() {
   }
 
   public String getCategory() {

@@ -1,9 +1,9 @@
-package com.example.Products_gradle.model.bindings;
+package com.example.Products_gradle.web.resource;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class FilterBindingModel {
+public class FilterResource {
 
   @NotBlank(message = "Field cannot be empty string or null!!!")
   @Size(min = 1, message = "Field length must be more than 1 character!!!")
@@ -17,10 +17,10 @@ public class FilterBindingModel {
   @Size(min = 1, message = "Operation length must be more than 1 character!!!")
   private String operation;
 
-  public FilterBindingModel() {
+  public FilterResource() {
   }
 
-  public FilterBindingModel(String field, String value, String operation) {
+  public FilterResource(String field, String value, String operation) {
     this.field = field;
     this.value = value;
     this.operation = operation;

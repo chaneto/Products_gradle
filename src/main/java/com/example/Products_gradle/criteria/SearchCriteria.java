@@ -1,4 +1,4 @@
-package com.example.Products_gradle.queryDsl;
+package com.example.Products_gradle.criteria;
 
 public class SearchCriteria {
 
