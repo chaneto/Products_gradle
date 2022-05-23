@@ -3,7 +3,6 @@ package com.example.Products_gradle.web.resource;
 public class CategoryResource {
 
   private String category;
-
   private int productsAvailable;
 
   public CategoryResource() {
