@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.Specification;
 public class ProductPredicate implements Specification<Product> {
 
   private SearchCriteria criteria;
+
   public ProductPredicate() {
   }
 

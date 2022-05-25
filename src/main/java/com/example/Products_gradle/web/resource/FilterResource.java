@@ -9,8 +9,8 @@ public class FilterResource {
   @Size(min = 1, message = "Field length must be more than 1 character!!!")
   private String field;
 
-  @NotBlank(message = "Name cannot be empty string or null!!!")
-  @Size(min = 1, message = "Name length must be more than 1 character!!!")
+  @NotBlank(message = "Value cannot be empty string or null!!!")
+  @Size(min = 1, message = "Value length must be more than 1 character!!!")
   private String value;
 
   @NotBlank(message = "Operation cannot be empty string or null!!!")

@@ -12,12 +12,14 @@ import com.example.Products_gradle.web.resource.ProductRestResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
+@Validated
 @RequestMapping("/products")
 public class ProductController {
 
@@ -94,7 +96,7 @@ public class ProductController {
   public ResponseEntity<?> allProductsOrderByQuantities(@RequestParam("orderBy") String orderBy,
     @RequestParam("direction") String direction,
     @RequestParam("page") Integer page, @RequestParam("pageSize") Integer pageSize,
-    @RequestBody @Valid List<FilterResource> filterResources,
+    @RequestBody List<@Valid FilterResource> filterResources,
     BindingResult bindingResult) {
     List<Product> products = this.productService.validationSortingAndFiltering(orderBy, direction, page, pageSize, filterResources, bindingResult);
     return new ResponseEntity<>(new ProductRestResource(this.productAssembler.assembleProductsResource(products), this.productService.getAllProductCount(this.productService.getAllSpecifications(filterResources))), HttpStatus.OK);

@@ -16,7 +16,6 @@ import com.example.Products_gradle.criteria.SearchCriteria;
 import com.example.Products_gradle.repositories.ProductRepository;
 import com.example.Products_gradle.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -62,13 +61,7 @@ public class ProductServiceImpl implements ProductService {
     if (product.getLastModifiedDate() == null) {
       product.setLastModifiedDate(LocalDate.now());
     }
-    try {
-      this.productRepository.save(product);
-      return product;
-    } catch (Exception e) {
-      throw new DataIntegrityViolationException(e.getMessage());
-    }
-
+      return this.productRepository.save(product);
   }
 
   @Override

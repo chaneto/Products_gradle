@@ -25,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpEntity;
@@ -97,14 +96,6 @@ public class ProductServiceImplTest {
     this.productService.seedProduct(product1);
     this.productService.seedProduct(product3);
     Assert.assertEquals(2, this.productRepository.count());
-  }
-
-  @Test(expected = DataIntegrityViolationException.class)
-  public void testSeedProductWithInvalidData() {
-    this.productRepository.deleteAll();
-    Assert.assertEquals(0, this.productRepository.count());
-    product1.setName("");
-    this.productService.seedProduct(product1);
   }
 
   @Test
