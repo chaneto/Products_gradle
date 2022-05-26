@@ -9,7 +9,6 @@ import com.example.Products_gradle.web.resource.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -92,7 +91,7 @@ public class ProductController {
   public ResponseEntity<?> allProductsOrderByQuantities(@RequestParam("orderBy") String orderBy,
     @RequestParam("direction") String direction,
     @RequestParam("page") Integer page, @RequestParam("pageSize") Integer pageSize,
-    @RequestBody @Valid ValidList filterResources,
+    @RequestBody @Valid FilterResource filterResources,
     BindingResult bindingResult) {
     List<Product> products = this.productService.validationSortingAndFiltering(orderBy, direction, page, pageSize, filterResources.getList(), bindingResult);
     return new ResponseEntity<>(new ProductRestResource(this.productAssembler.assembleProductsResource(products), this.productService.getAllProductCount(this.productService.getAllSpecifications(filterResources.getList()))), HttpStatus.OK);

@@ -1,10 +1,20 @@
 package com.example.Products_gradle.criteria;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class SearchCriteria {
 
-
+  @NotBlank(message = "Field cannot be empty string or null!!!")
+  @Size(min = 1, message = "Field length must be more than 1 character!!!")
   private String field;
+
+  @NotBlank(message = "Operation cannot be empty string or null!!!")
+  @Size(min = 1, message = "Operation length must be more than 1 character!!!")
   private String operation;
+
+  @NotNull(message = "Value cannot be null!!!")
   private Object value;
 
   public SearchCriteria() {

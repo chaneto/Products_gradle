@@ -2,6 +2,7 @@ package com.example.Products_gradle.services;
 
 import java.math.BigDecimal;
 import java.util.List;
+import com.example.Products_gradle.criteria.SearchCriteria;
 import com.example.Products_gradle.model.entities.Product;
 import com.example.Products_gradle.web.resource.*;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -29,7 +30,7 @@ public interface ProductService {
 
   List<Product> getAllProductsBySpecifications(Specification specification);
 
-  Specification getAllSpecifications(List<FilterResource> specifications);
+  Specification getAllSpecifications(List<SearchCriteria> specifications);
 
   int getAllProductCount(Specification specification);
 
@@ -43,11 +44,11 @@ public interface ProductService {
   boolean productIsExists(String name);
 
   List<Product> validationSortingAndFiltering(String orderBy, String direction, Integer page,
-    Integer pageSize, List<FilterResource> filterResources,
+    Integer pageSize, List<SearchCriteria> searchCriteria,
     BindingResult bindingResult);
 
   List<Product> getAllProducts(Integer pageNo, Integer pageSize, Sort sort,
-    List<FilterResource> filterResource);
+    List<SearchCriteria> searchCriteria);
 
   Product getById(Long id);
 

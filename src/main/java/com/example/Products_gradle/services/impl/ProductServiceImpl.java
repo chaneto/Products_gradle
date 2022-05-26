@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
+import com.example.Products_gradle.criteria.SearchCriteria;
 import com.example.Products_gradle.exeptions.CheckQuantityException;
 import com.example.Products_gradle.exeptions.ConflictException;
 import com.example.Products_gradle.exeptions.NotFoundException;
@@ -12,7 +13,6 @@ import com.example.Products_gradle.exeptions.ValidationException;
 import com.example.Products_gradle.model.entities.Product;
 import com.example.Products_gradle.web.resource.*;
 import com.example.Products_gradle.criteria.ProductPredicate;
-import com.example.Products_gradle.criteria.SearchCriteria;
 import com.example.Products_gradle.repositories.ProductRepository;
 import com.example.Products_gradle.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,9 +84,9 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public List<Product> getAllProducts(Integer pageNo, Integer pageSize, Sort sort,
-    List<FilterResource> filterResource) {
+    List<SearchCriteria> searchCriteria) {
     Pageable paging = PageRequest.of(pageNo, pageSize, sort);
-    Specification specification = getAllSpecifications(filterResource);
+    Specification specification = getAllSpecifications(searchCriteria);
     Page<Product> pagedResult = this.productRepository.findAll(specification, paging);
     if (pagedResult.hasContent()) {
       return pagedResult.getContent();
@@ -97,13 +97,13 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public List<Product> validationSortingAndFiltering(String orderBy, String direction, Integer page,
-    Integer pageSize, List<FilterResource> filterResources,
+    Integer pageSize, List<SearchCriteria> searchCriteria,
     BindingResult bindingResult) {
     List<Product> products = new ArrayList<>();
     validationProductCreateResource(bindingResult);
     ProductPredicate predicate = new ProductPredicate();
     Sort sortBy = predicate.getSorted(orderBy, direction);
-    products = getAllProducts(page, pageSize, sortBy, filterResources);
+    products = getAllProducts(page, pageSize, sortBy, searchCriteria);
     return products;
   }
 
@@ -113,14 +113,14 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public Specification getAllSpecifications(List<FilterResource> specifications) {
+  public Specification getAllSpecifications(List<SearchCriteria> specifications) {
     Specification specification = null;
 
     for (int i = 0; i < specifications.size(); i++) {
       String field = specifications.get(i).getField();
       String operation = specifications.get(i).getOperation();
-      String value = specifications.get(i).getValue();
-      SearchCriteria searchCriteria = new SearchCriteria(field, operation, value);
+      Object value = specifications.get(i).getValue();
+      SearchCriteria searchCriteria = new com.example.Products_gradle.criteria.SearchCriteria(field, operation, value);
       ProductPredicate predicate = new ProductPredicate(searchCriteria);
       if (specification == null) {
         specification = Specification.where(predicate);

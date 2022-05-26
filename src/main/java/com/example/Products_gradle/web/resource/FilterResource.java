@@ -1,52 +1,24 @@
 package com.example.Products_gradle.web.resource;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.util.*;
+import javax.validation.Valid;
+
+import com.example.Products_gradle.criteria.SearchCriteria;
 
 public class FilterResource {
 
-  @NotBlank(message = "Field cannot be empty string or null!!!")
-  @Size(min = 1, message = "Field length must be more than 1 character!!!")
-  private String field;
-
-  @NotBlank(message = "Value cannot be empty string or null!!!")
-  @Size(min = 1, message = "Value length must be more than 1 character!!!")
-  private String value;
-
-  @NotBlank(message = "Operation cannot be empty string or null!!!")
-  @Size(min = 1, message = "Operation length must be more than 1 character!!!")
-  private String operation;
+  @Valid
+  private List<SearchCriteria> list;
 
   public FilterResource() {
+    this.list = new ArrayList<>();
   }
 
-  public FilterResource(String field, String value, String operation) {
-    this.field = field;
-    this.value = value;
-    this.operation = operation;
+  public List<SearchCriteria> getList() {
+    return list;
   }
 
-  public String getField() {
-    return field;
-  }
-
-  public void setField(String field) {
-    this.field = field;
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-  public String getOperation() {
-    return operation;
-  }
-
-  public void setOperation(String operation) {
-    this.operation = operation;
+  public void setList(List<SearchCriteria> list) {
+    this.list = list;
   }
 }

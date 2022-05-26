@@ -7,13 +7,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.Products_gradle.criteria.ProductPredicate;
+import com.example.Products_gradle.criteria.SearchCriteria;
 import com.example.Products_gradle.exeptions.CheckQuantityException;
 import com.example.Products_gradle.exeptions.ConflictException;
 import com.example.Products_gradle.exeptions.NotFoundException;
 import com.example.Products_gradle.exeptions.ValidationException;
 import com.example.Products_gradle.model.entities.Product;
 import com.example.Products_gradle.web.assembler.ProductAssembler;
-import com.example.Products_gradle.web.resource.FilterResource;
 import com.example.Products_gradle.web.resource.OrderCreateResource;
 import com.example.Products_gradle.repositories.ProductRepository;
 import com.example.Products_gradle.web.resource.ProductCreateResource;
@@ -101,8 +101,8 @@ public class ProductServiceImplTest {
   @Test
   public void getAllProductCount() {
     this.productRepository.deleteAll();
-    FilterResource filterResource = new FilterResource("quantity", "5", "ge");
-    Specification specification = this.productService.getAllSpecifications(List.of(filterResource));
+    SearchCriteria searchCriteria = new SearchCriteria("quantity", "ge", "5");
+    Specification specification = this.productService.getAllSpecifications(List.of(searchCriteria));
     Assert.assertEquals(0, this.productService.getAllProductCount(specification));
     this.productRepository.save(product1);
     this.productRepository.save(product3);
@@ -166,44 +166,44 @@ public class ProductServiceImplTest {
   public void testGetAllProducts() {
     List<Product> products = new ArrayList<>();
     Sort sort = null;
-    FilterResource filterResource = new FilterResource("quantity", "0", "ge");
-    Specification specification = this.productService.getAllSpecifications(List.of(filterResource));
+    SearchCriteria searchCriteria = new SearchCriteria("quantity", "ge", "0");
+    Specification specification = this.productService.getAllSpecifications(List.of(searchCriteria));
     ProductPredicate predicate = new ProductPredicate();
     sort = predicate.getSorted("name", "ASC");
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertEquals(this.productService.getAllProductCount(specification), products.size());
     Assert.assertEquals("Apple", products.get(0).getName());
 
     sort = predicate.getSorted("name", "DESC");
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertEquals("Toshiba crx", products.get(0).getName());
 
     sort = predicate.getSorted("id", "ASC");
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertEquals("Toshiba crx", products.get(0).getName());
 
     sort = predicate.getSorted("id", "DESC");
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertEquals("Apple", products.get(0).getName());
 
     sort = predicate.getSorted("category", "ASC");
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertEquals("Toshiba crx", products.get(0).getName());
 
     sort = predicate.getSorted("category", "DESC");
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertEquals("Apple", products.get(0).getName());
 
     sort = predicate.getSorted("createdDate", "ASC");
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertEquals("Toshiba crx", products.get(0).getName());
 
     sort = predicate.getSorted("createdDate", "DESC");
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertEquals("Apple", products.get(0).getName());
 
     this.productRepository.deleteAll();
-    products = this.productService.getAllProducts(0, 3, sort, List.of(filterResource));
+    products = this.productService.getAllProducts(0, 3, sort, List.of(searchCriteria));
     Assert.assertTrue(products.isEmpty());
   }
 
@@ -257,18 +257,14 @@ public class ProductServiceImplTest {
 
   @Test
   public void testFindByName() {
-    Product
-      product =
-      this.productRepository.findByName(this.productRepository.findAll().get(0).getName());
+    Product product = this.productRepository.findByName(this.productRepository.findAll().get(0).getName());
     Assert.assertEquals("Toshiba crx", product.getName());
   }
 
   @Test
   public void testGetAllProductsBySpecifications() {
-    FilterResource
-      filterResource =
-      new FilterResource("name", this.productRepository.findAll().get(0).getName(), "eq");
-    Specification specification = this.productService.getAllSpecifications(List.of(filterResource));
+    SearchCriteria searchCriteria = new SearchCriteria("name", "eq", this.productRepository.findAll().get(0).getName());
+    Specification specification = this.productService.getAllSpecifications(List.of(searchCriteria));
     List<Product> products = this.productService.getAllProductsBySpecifications(specification);
     Assert.assertEquals(1, products.size());
     Assert.assertEquals("Toshiba crx", products.get(0).getName());
@@ -403,9 +399,9 @@ public class ProductServiceImplTest {
   public void testValidationSortingAndFiltering() {
     BindingResult result = mock(BindingResult.class);
     when(result.hasErrors()).thenReturn(false);
-    FilterResource filterResource = new FilterResource("quantity", "0", "ge");
+    SearchCriteria searchCriteria = new SearchCriteria("quantity", "ge", "0");
     List<Product> products =
-      this.productService.validationSortingAndFiltering("id", "ASC", 0, 2, List.of(filterResource),
+      this.productService.validationSortingAndFiltering("id", "ASC", 0, 2, List.of(searchCriteria),
         result);
     Assert.assertEquals(2, products.size());
   }
