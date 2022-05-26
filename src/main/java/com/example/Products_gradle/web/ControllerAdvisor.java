@@ -56,7 +56,7 @@ public class ControllerAdvisor {
     ErrorMessage message = new ErrorMessage(
       HttpStatus.BAD_REQUEST.toString(),
       LocalDate.now(),
-      "Quantity exception!!!",
+      "Invalid field value!!!",
       ex.getMessage());
     return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
   }
