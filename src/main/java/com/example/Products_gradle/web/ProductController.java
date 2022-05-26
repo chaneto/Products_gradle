@@ -94,8 +94,7 @@ public class ProductController {
     @RequestParam("page") Integer page, @RequestParam("pageSize") Integer pageSize,
     @RequestBody @Valid ValidList filterResources,
     BindingResult bindingResult) {
-    List<FilterResource> filterResources1 = filterResources.getList();
-    List<Product> products = this.productService.validationSortingAndFiltering(orderBy, direction, page, pageSize, filterResources1, bindingResult);
-    return new ResponseEntity<>(new ProductRestResource(this.productAssembler.assembleProductsResource(products), this.productService.getAllProductCount(this.productService.getAllSpecifications(filterResources1))), HttpStatus.OK);
+    List<Product> products = this.productService.validationSortingAndFiltering(orderBy, direction, page, pageSize, filterResources.getList(), bindingResult);
+    return new ResponseEntity<>(new ProductRestResource(this.productAssembler.assembleProductsResource(products), this.productService.getAllProductCount(this.productService.getAllSpecifications(filterResources.getList()))), HttpStatus.OK);
   }
 }
