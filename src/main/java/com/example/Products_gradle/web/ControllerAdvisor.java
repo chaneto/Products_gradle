@@ -1,7 +1,7 @@
 package com.example.Products_gradle.web;
 
 import java.time.LocalDate;
-import com.example.Products_gradle.exeptions.*;
+import com.example.Products_gradle.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

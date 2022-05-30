@@ -1,4 +1,4 @@
-package com.example.Products_gradle.exeptions;
+package com.example.Products_gradle.exceptions;
 
 public class GlobalException extends Throwable{
 
